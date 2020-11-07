@@ -2,6 +2,7 @@ package com.gledson.workshopmongodb.resources;
 
 
 import com.gledson.workshopmongodb.domain.User;
+import com.gledson.workshopmongodb.dto.UserDTO;
 import com.gledson.workshopmongodb.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -25,9 +27,11 @@ public class UserResource {
     private  UserService serv;
 
     @RequestMapping(method= RequestMethod.GET)
-    public ResponseEntity<List<User>> findAll(){
+    public ResponseEntity<List<UserDTO>> findAll(){
+    //public ResponseEntity<List<User>> findAll(){
         List<User> list = serv.findAll();
-        return ResponseEntity.ok().body(list);
+        List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
     }
 
     /*
