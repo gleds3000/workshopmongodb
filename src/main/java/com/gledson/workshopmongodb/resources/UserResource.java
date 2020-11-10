@@ -54,6 +54,15 @@ public class UserResource {
         return ResponseEntity.noContent().build();
     }
 
+    @RequestMapping( value= "/{id}" , method= RequestMethod.PUT)
+    public ResponseEntity<Void> update(@RequestBody UserDTO objDto , @PathVariable String id ){
+        User obj = serv.fromDTO(objDto);
+        obj.setId(id);
+        obj = serv.update(obj);
+
+        return ResponseEntity.noContent().build();
+    }
+
     /*
     public ResponseEntity <List<User>> findAll(){
 
