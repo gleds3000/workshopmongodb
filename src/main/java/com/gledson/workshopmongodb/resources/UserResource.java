@@ -1,6 +1,7 @@
 package com.gledson.workshopmongodb.resources;
 
 
+import com.gledson.workshopmongodb.domain.Post;
 import com.gledson.workshopmongodb.domain.User;
 import com.gledson.workshopmongodb.dto.UserDTO;
 import com.gledson.workshopmongodb.services.UserService;
@@ -62,6 +63,14 @@ public class UserResource {
 
         return ResponseEntity.noContent().build();
     }
+
+    @RequestMapping( value= "/{id}/posts" , method= RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPost(@PathVariable String id){
+        User obj = serv.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
+    }
+
+
 
     /*
     public ResponseEntity <List<User>> findAll(){
