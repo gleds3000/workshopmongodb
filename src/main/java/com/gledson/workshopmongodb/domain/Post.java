@@ -1,11 +1,14 @@
 package com.gledson.workshopmongodb.domain;
 
 import com.gledson.workshopmongodb.dto.AuthorDTO;
+import com.gledson.workshopmongodb.dto.CommentDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Document(collection = "post")
@@ -18,6 +21,8 @@ public class Post implements Serializable {
     private String body;
     private AuthorDTO author;
 
+    private List<CommentDTO> comment = new ArrayList<>();
+
     public Post() {
     }
 
@@ -27,6 +32,7 @@ public class Post implements Serializable {
         this.title = title;
         this.body = body;
         this.author = author;
+
     }
 
     public String getId() {
@@ -69,6 +75,16 @@ public class Post implements Serializable {
     public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
+
+
+    public List<CommentDTO> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<CommentDTO> comment) {
+        this.comment = comment;
+    }
+
 
     @Override
     public boolean equals(Object o) {
