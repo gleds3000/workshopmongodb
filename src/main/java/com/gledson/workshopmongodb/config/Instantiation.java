@@ -39,10 +39,11 @@ public class Instantiation implements CommandLineRunner {
 
         Post post1 = new Post(null, sdf.parse("21/03/2020"), "Partiu viagem", "Vou viajar para Sao Paulo!", new AuthorDTO(gledson));
         Post post2 = new Post(null, sdf.parse("23/03/2020"), "Bom dia", "Vou ser feliz hoje!", new AuthorDTO(gledson));
+        Post post3 = new Post(null, sdf.parse("11/11/2020"), "Boa Noite", "Mais um dia Praticando!", new AuthorDTO(gledson));
 
-        postRepository.saveAll(Arrays.asList(post1,post2));
+        postRepository.saveAll(Arrays.asList(post1,post2,post3));
 
-        gledson.getPosts().addAll(Arrays.asList(post1,post2));
+        gledson.getPosts().addAll(Arrays.asList(post1,post2, post3));
         userRepository.save(gledson);
 
     }
