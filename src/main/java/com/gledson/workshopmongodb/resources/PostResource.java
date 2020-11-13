@@ -4,6 +4,7 @@ package com.gledson.workshopmongodb.resources;
 import com.gledson.workshopmongodb.domain.Post;
 import com.gledson.workshopmongodb.domain.User;
 import com.gledson.workshopmongodb.dto.UserDTO;
+import com.gledson.workshopmongodb.resources.util.URL;
 import com.gledson.workshopmongodb.services.PostService;
 import com.gledson.workshopmongodb.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,13 @@ public class PostResource {
         return ResponseEntity.ok().body(obj);
     }
 
+    @RequestMapping( value= "/titlesearch" , method= RequestMethod.GET)
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text){
+        text = URL.decodeParam(text);
+        List<Post> list = serv.findByTitle(text);
+
+        return ResponseEntity.ok().body(list);
+    }
 
 
 }
