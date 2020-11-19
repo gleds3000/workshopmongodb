@@ -12,5 +12,10 @@ docker run -d  --name mongo-on-docker  -p 27888:27017 -e MONGO_INITDB_ROOT_USERN
 
 
 # FRONT END 
+irei utilizar uma das opcoes abaixo
+
+surge
+netlify
+jsdeliver
 
 REPO ----
